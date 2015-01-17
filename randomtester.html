@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11-transistional.dtd">
+
+<html>
+
+<head>
+<script type="text/javascript">
+function fnrmd( max ) {
+	var min = 1;
+	return Math.floor(Math.random() * (max - min)) + min;
+}
+</script>
+
+</head>
+
+<body>
+
+<script type="text/javascript">
+
+	// Random Number Tester
+
+	var randomNumber = 0;
+	
+	for (x = 1; x <= 10; x++) {
+		randomNumber = fnrmd(20);
+		document.write("Random number #"+x+" is: "+randomNumber+"<br />");
+	}
+	
+	
+</script>
+
+</body>
+</html>
