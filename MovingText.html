@@ -1,0 +1,93 @@
+<html>
+   <head>
+   <title>HTML 5 Animated Text</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+    		document.write("Initialization of globals<p />");
+        var context;
+        var text = "";
+        var xChange;
+        var yChange;
+        var xSize = 500;
+        var ySize = 500;
+
+        // Called on loading of the page
+        $(function() {
+        		document.write("onload equivalent section<p />");
+        		// find the canvas
+    			document.write("right above context stuff<p />");
+             context = document.getElementById("cvs").getContext("2d");          
+ 			document.write("right below context stuff<p />");
+        		// configure the animate function to be automatically called every 30ms
+    			document.write("right above setInterval<p />");
+            //setInterval("animate()", 30);
+            setInterval("animate()", 5000);
+
+        		// initial direction and position of the text
+        		xChange  = 10;
+        		yChange = 10;
+            textXpos = 5;
+            textYpos = 200;
+            text = "Animation!";
+    			document.write("end of onload equivalent section<p />");
+            
+        });
+
+        function animate() {            
+            // Clear screen
+           document.write("top of the animate section<p />");
+
+            context.clearRect(0, 0, xSize, ySize);
+            context.globalAlpha = 1;
+            context.fillStyle = '#fff';
+            context.fillRect(0, 0, xSize, YSize);    
+
+            var metrics = context.measureText(text);
+            var textWidth = metrics.width;
+            var textHeight = metrics.height;
+            
+            // Moving to the right
+            if (xChange > 0) {
+            		if (textXpos > (xSize - textWidth) ) {
+            			// Time to move to the left
+            			xChange = -5;
+            		}
+            } else {
+	            	//Moving to the left
+	            	if (textXpos < 0) {
+	            		xChange = +5;
+	            	}
+            }
+            
+            // Moving Down
+            if (yChange > 0) {
+            		if (textYpos > (ySize - textHeight) ) {
+            			// Time to move up
+            			yChange = -5;
+            		}
+            } else {
+	            	//Moving Up
+	            	if (textYpos < 0) {
+	            		yChange = +5;
+	            	}
+            }
+            
+            // Apply the deltas
+            textXpos += xChange;
+            textYpos += yChange;
+
+            context.font = '20px _sans';
+            context.fillStyle = '#FF0000';
+            context.textBaseline = 'top';
+            context.fillText  ( text, textXpos, textYpos);    
+          }    
+          </script>
+      </head>
+      <body> 
+         <div id="page">
+            <canvas id="cvs" width="500" height="500">
+               Your browser does not support the HTML 5 Canvas. 
+            </canvas>
+         </div>
+      </body>
+   </html>

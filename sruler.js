@@ -15,6 +15,11 @@ function fnrmd( max ) {
 // Opening title screen - and menu
 
 20 COLOR 15, 1: CLS :  S = STRING$(29, 32) + Ruler 2015": GOSUB 8250
+// 8250 clears a line, and then displays the contents of S$
+
+
+
+
 21 Q$ = "Big Orc Software": LOCATE 9, (40 - INT(LEN(Q$) / 2)): COLOR 11, 1: PRINT Q$; : COLOR 15, 1
 22 Q$ = "Proudly Presents": LOCATE 10, 40 - INT(LEN(Q$) / 2): COLOR 13, 1: PRINT Q$; : COLOR 15, 1
 23 LOCATE 11, 22: PRINT " >>>>>>  Ruler 2015 "; : COLOR 30, 1: PRINT "PLUS"; : COLOR 15, 1: PRINT "  <<<<<<"
