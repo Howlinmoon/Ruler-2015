@@ -10,6 +10,7 @@
         var yChange;
         var xSize = 500;
         var ySize = 500;
+        var text2 = "";
 
         $(function() {
             context = document.getElementById("cvs").getContext("2d");            
@@ -18,7 +19,8 @@
             textDirection ="right";
             textXpos = 5;
             textYpos = 200;
-            text = "Animation!";    
+            text = "Animation!";
+            text2 = "2nd line of text";
         });  
 
         function animate() {            
@@ -47,11 +49,14 @@
                     textDirection = "right";
                 }                    
             }
+            
 
             context.font = '20px _sans';
             context.fillStyle = '#FF0000';
             context.textBaseline = 'top';
-            context.fillText  ( text, textXpos, textYpos);    
+            context.fillText  ( text, textXpos, textYpos);
+            text2 = "textXpos: "+textXpos+", textYpos: "+textYpos;
+            context.fillText ( text2, 5, 10);
           }    
           </script>
       </head>
@@ -61,5 +66,6 @@
                Your browser does not support the HTML 5 Canvas. 
             </canvas>
          </div>
+         This Should Be Below The Canvas
       </body>
    </html>
