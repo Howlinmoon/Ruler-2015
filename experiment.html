@@ -3,7 +3,7 @@
    <title>HTML 5 Animated Text</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript">
-        var textDirection ="";
+
         var context;
         var text = "";
         var xChange;
@@ -11,16 +11,20 @@
         var xSize = 500;
         var ySize = 500;
         var text2 = "";
+        var text3 = "";
+        var textXpos = 0;
+        var textYpos = 0;
 
         $(function() {
             context = document.getElementById("cvs").getContext("2d");            
             setInterval("animate()", 30);
 
-            textDirection ="right";
+
             textXpos = 5;
             textYpos = 200;
-            text = "Animation!";
-            text2 = "2nd line of text";
+            text = "Moving Text";
+            xChange = 5;
+            yChange = 5;
         });  
 
         function animate() {            
@@ -32,30 +36,30 @@
 
             var metrics = context.measureText(text);
             var textWidth = metrics.width;
-
-            if (textDirection == "right") {
-                textXpos += 10;
-                textYpos += 20;
-
-                if (textXpos > 500 - textWidth) {
-                    textDirection = "left";
-                }
-            }
-            else {
-                textXpos -= 10;
-                textYpos -= 20;
-
-                if (textXpos < 10) {
-                    textDirection = "right";
-                }                    
-            }
+            var textHeight = metrics.height;
             
+ 			if (textXpos > 500 - textWidth) {
+ 				xChange = -5;
+ 			} else if (textXpos < 0) {
+ 				xChange = 5;
+ 			}
 
+			if (textYpos > 500) {
+					yChange = -5;
+				} else if (textYpos < 0) {
+					yChange = 5;
+				}
+
+ 			textXpos += xChange;
+ 			textYpos += yChange;
+ 
+ 
+            
             context.font = '20px _sans';
             context.fillStyle = '#FF0000';
             context.textBaseline = 'top';
             context.fillText  ( text, textXpos, textYpos);
-            text2 = "textXpos: "+textXpos+", textYpos: "+textYpos;
+            text2 = "textXpos: "+textXpos+", xChange: "+xChange+" textYpos: "+textYpos+", yChange: "+yChange;
             context.fillText ( text2, 5, 10);
           }    
           </script>
