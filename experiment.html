@@ -17,7 +17,7 @@
 
         $(function() {
             context = document.getElementById("cvs").getContext("2d");            
-            setInterval("animate()", 30);
+            setInterval("animate()", 50);
 
 
             textXpos = 5;
@@ -31,12 +31,13 @@
             // Clear screen
             context.clearRect(0, 0, 500, 500);
             context.globalAlpha = 1;
-            context.fillStyle = '#fff';
+            context.fillStyle = '#000000';
             context.fillRect(0, 0, 500, 500);    
 
             var metrics = context.measureText(text);
             var textWidth = metrics.width;
-            var textHeight = metrics.height;
+            // have to guess at the height
+            var textHeight = 16;
             
  			if (textXpos > 500 - textWidth) {
  				xChange = -5;
@@ -44,7 +45,7 @@
  				xChange = 5;
  			}
 
-			if (textYpos > 500) {
+			if (textYpos > 500 - textHeight) {
 					yChange = -5;
 				} else if (textYpos < 0) {
 					yChange = 5;
@@ -56,10 +57,10 @@
  
             
             context.font = '20px _sans';
-            context.fillStyle = '#FF0000';
+            context.fillStyle = '#0000FF';
             context.textBaseline = 'top';
             context.fillText  ( text, textXpos, textYpos);
-            text2 = "textXpos: "+textXpos+", xChange: "+xChange+" textYpos: "+textYpos+", yChange: "+yChange;
+            text2 = "Xpos: "+textXpos+", xDelt: "+xChange+" Ypos: "+textYpos+", yDelt: "+yChange+", textHeight = "+textHeight;
             context.fillText ( text2, 5, 10);
           }    
           </script>
